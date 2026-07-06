@@ -8,6 +8,7 @@ import {
   TableHead,
 } from "@/components/ui/table";
 import ProductsTableColGroup from "./ProductsTableColGroup";
+import { ArrowUpDown } from "lucide-react";
 export default function ProductsTableSkeleton() {
   return (
     <Table className="w-full table-fixed">
@@ -15,17 +16,17 @@ export default function ProductsTableSkeleton() {
       <TableHeader>
         <TableRow>
           <TableHead>
-            <Skeleton className="w-full h-4" />
+            <p className="text-[0.8rem] p-0 font-semibold flex items-center gap-1">
+              Product
+            </p>
           </TableHead>
-          <TableHead className="text-center">
-            <Skeleton className="w-full h-4" />
-          </TableHead>
+          <TableHead className="text-center">Status</TableHead>
           <TableHead className="text-right">
-            <Skeleton className="w-full h-4" />
+            <p className="text-[0.8rem] p-0 font-semibold flex items-center gap-1 justify-end">
+              Price
+            </p>
           </TableHead>
-          <TableHead className="text-center">
-            <Skeleton className="w-full h-4" />
-          </TableHead>
+          <TableHead className="text-center">Action</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

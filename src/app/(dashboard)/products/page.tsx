@@ -27,6 +27,9 @@ export default function ProductsPage() {
     handleSearchChange,
     handlePageChange,
     handleSort,
+
+    handleCategoryChange,
+    handlePageSizeChange,
     debouncedSearch,
 
     editingProduct,
@@ -35,8 +38,6 @@ export default function ProductsPage() {
     handleAddProduct,
     handleUpdateProduct,
     handleDeleteProduct,
-
-    handleCategoryChange,
 
     isDialogOpen,
     handleEditProduct,
@@ -115,9 +116,12 @@ export default function ProductsPage() {
 
           {shouldShowPagination && (
             <Pagination
+              totalItems={pagination.totalItems}
               page={pagination.page}
               totalPages={pagination.totalPages}
               onPageChange={handlePageChange}
+              pageSize={query.pageSize}
+              onPageSizeChange={handlePageSizeChange}
             />
           )}
 

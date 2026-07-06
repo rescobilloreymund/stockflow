@@ -17,6 +17,7 @@ import { Supplier } from "@/types/supplier";
 import { useDebounce } from "./useDebounce";
 import { toast } from "sonner";
 import { toggleSortDirection } from "@/utils/common.helper";
+import { PageSize } from "@/types/common";
 
 const categoryApi = new CategoryApi();
 const productApi = new ProductApi();
@@ -196,6 +197,11 @@ export function useProductsPage() {
     });
   }
 
+  function handlePageSizeChange(pageSize: PageSize) {
+    setIsLoadingProducts(true);
+    setQuery((prev) => ({ ...prev, pageSize, page: 1 }));
+  }
+
   function buildProductQuery(): GetProductsRequest {
     return {
       ...query,
@@ -220,6 +226,7 @@ export function useProductsPage() {
     handleSearchChange,
     handleCategoryChange,
     handlePageChange,
+    handlePageSizeChange,
     handleSort,
     debouncedSearch,
 

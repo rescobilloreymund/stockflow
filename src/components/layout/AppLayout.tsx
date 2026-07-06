@@ -11,10 +11,10 @@ export default function AppLayout({ children }: AppLayoutProps) {
     <div className="flex flex-col h-screen">
       <Navbar />
 
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 min-h-0 overflow-hidden">
         <Sidebar />
 
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 min-h-0 overflow-y-auto">{children}</main>
       </div>
     </div>
   );
