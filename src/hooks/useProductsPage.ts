@@ -11,10 +11,12 @@ import {
   UpdateProductRequest,
   GetProductsRequest,
   GetProductsResponse,
+  ProductSortField,
 } from "@/types/product";
 import { Supplier } from "@/types/supplier";
 import { useDebounce } from "./useDebounce";
 import { toast } from "sonner";
+import { toggleSortDirection } from "@/utils/common.helper";
 
 const categoryApi = new CategoryApi();
 const productApi = new ProductApi();
@@ -79,7 +81,6 @@ export function useProductsPage() {
   async function loadProducts() {
     try {
       setIsLoadingProducts(true);
-      console.log("query", buildProductQuery());
       const response = await productApi.getProducts(buildProductQuery());
       setProductsResult(response);
     } catch (error) {
@@ -175,6 +176,26 @@ export function useProductsPage() {
     setQuery((prev) => ({ ...prev, page }));
   }
 
+  function handleSort(field: ProductSortField) {
+    setIsLoadingProducts(true);
+    setQuery((prev) => {
+      if (prev.sortBy === field) {
+        return {
+          ...prev,
+          sortDirection: toggleSortDirection(prev.sortDirection),
+          page: 1,
+        };
+      }
+
+      return {
+        ...prev,
+        sortBy: field,
+        sortDirection: "asc",
+        page: 1,
+      };
+    });
+  }
+
   function buildProductQuery(): GetProductsRequest {
     return {
       ...query,
@@ -199,6 +220,7 @@ export function useProductsPage() {
     handleSearchChange,
     handleCategoryChange,
     handlePageChange,
+    handleSort,
     debouncedSearch,
 
     editingProduct,

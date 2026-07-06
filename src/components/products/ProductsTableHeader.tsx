@@ -1,12 +1,39 @@
 import { TableHeader, TableRow, TableHead } from "@/components/ui/table";
+import { SortDirection } from "@/types/common";
+import { ProductSortField } from "@/types/product";
+import SortableHeader from "@/components/shared/SortableHeader";
 
-export default function ProductsTableHeader() {
+interface ProductsTableHeaderProps {
+  sortBy: ProductSortField;
+  sortDirection: SortDirection;
+  onSort: (field: ProductSortField) => void;
+}
+
+export default function ProductsTableHeader({
+  sortBy,
+  sortDirection,
+  onSort,
+}: ProductsTableHeaderProps) {
   return (
     <TableHeader>
       <TableRow>
-        <TableHead>Product</TableHead>
+        <TableHead>
+          <SortableHeader
+            label="Product"
+            isActive={sortBy === "name"}
+            direction={sortDirection}
+            onClick={() => onSort("name")}
+          />
+        </TableHead>
         <TableHead className="text-center">Status</TableHead>
-        <TableHead className="text-right">Price</TableHead>
+        <TableHead className="text-right">
+          <SortableHeader
+            label="Price"
+            isActive={sortBy === "price"}
+            direction={sortDirection}
+            onClick={() => onSort("price")}
+          />
+        </TableHead>
         <TableHead className="text-center">Actions</TableHead>
       </TableRow>
     </TableHeader>

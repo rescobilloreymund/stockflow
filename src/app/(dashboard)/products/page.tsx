@@ -26,6 +26,7 @@ export default function ProductsPage() {
     query,
     handleSearchChange,
     handlePageChange,
+    handleSort,
     debouncedSearch,
 
     editingProduct,
@@ -56,7 +57,14 @@ export default function ProductsPage() {
 
   useEffect(() => {
     void loadProducts();
-  }, [debouncedSearch, query.categoryId, query.page, query.pageSize]);
+  }, [
+    debouncedSearch,
+    query.categoryId,
+    query.page,
+    query.pageSize,
+    query.sortBy,
+    query.sortDirection,
+  ]);
 
   return (
     <div className="space-y-1 px-5">
@@ -99,6 +107,9 @@ export default function ProductsPage() {
               products={products}
               onEdit={handleEditProduct}
               onDelete={handleDeleteProduct}
+              sortBy={query.sortBy}
+              sortDirection={query.sortDirection}
+              onSort={handleSort}
             />
           )}
 

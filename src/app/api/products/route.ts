@@ -1,6 +1,7 @@
 import { createProductSchema } from "@/schemas/product.schema";
 import { ProductService } from "@/services/product.service";
-import { GetProductsRequest } from "@/types/product";
+import { GetProductsRequest, ProductSortField } from "@/types/product";
+import { SortDirection } from "@/types/common";
 const productService = new ProductService();
 
 export async function GET(request: Request) {
@@ -10,6 +11,9 @@ export async function GET(request: Request) {
     const filters: GetProductsRequest = {
       page: Number(searchParams.get("page") ?? "1"),
       pageSize: Number(searchParams.get("pageSize") ?? "10"),
+      sortBy: (searchParams.get("sortBy") as ProductSortField) ?? "createdAt",
+      sortDirection:
+        (searchParams.get("sortDirection") as SortDirection) ?? "desc",
     };
 
     if (filters.page < 1) {

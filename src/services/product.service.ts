@@ -10,7 +10,8 @@ import {
 } from "@/types/product";
 export class ProductService {
   async getProducts(filters: GetProductsRequest): Promise<GetProductsResponse> {
-    const { search, categoryId, page, pageSize } = filters;
+    const { search, categoryId, page, pageSize, sortBy, sortDirection } =
+      filters;
     const where: Prisma.ProductWhereInput = {};
     if (search) {
       where.name = {
@@ -31,7 +32,7 @@ export class ProductService {
         skip: (page - 1) * pageSize,
         take: pageSize,
         orderBy: {
-          createdAt: "desc",
+          [sortBy]: sortDirection,
         },
       }),
     ]);

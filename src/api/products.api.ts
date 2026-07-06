@@ -9,7 +9,8 @@ import { CreateProductRequest } from "@/types/product";
 export class ProductApi extends BaseApi {
   getProducts(filters: GetProductsRequest): Promise<GetProductsResponse> {
     const params = new URLSearchParams();
-    const { search, categoryId, page, pageSize } = filters;
+    const { search, categoryId, page, pageSize, sortBy, sortDirection } =
+      filters;
     if (search) {
       params.set("search", search);
     }
@@ -20,7 +21,8 @@ export class ProductApi extends BaseApi {
 
     params.set("page", page.toString());
     params.set("pageSize", pageSize.toString());
-
+    params.set("sortBy", sortBy);
+    params.set("sortDirection", sortDirection);
     const query = params.toString();
 
     return this.fetchRequest<GetProductsResponse>(

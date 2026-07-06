@@ -17,7 +17,7 @@ export interface Product {
   updatedAt: string;
 }
 
-export type ProductSortField = "name" | "price" | "cost" | "createdAt";
+export type ProductSortField = "name" | "price" | "createdAt";
 
 export interface GetProductsResponse {
   data: Product[];
@@ -36,8 +36,8 @@ export interface GetProductsRequest {
   page: number;
   pageSize: number;
 
-  sortBy?: ProductSortField;
-  sortDirection?: SortDirection;
+  sortBy: ProductSortField;
+  sortDirection: SortDirection;
 }
 
 export interface CreateProductRequest {
