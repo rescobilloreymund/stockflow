@@ -1,1 +1,1 @@
-export const PAGE_SIZES = [10, 20, 50] as const;
+export const PAGE_SIZES: number[] = [10, 20, 50] as const;

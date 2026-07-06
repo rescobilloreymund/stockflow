@@ -83,6 +83,16 @@ export function useProductsPage() {
     try {
       setIsLoadingProducts(true);
       const response = await productApi.getProducts(buildProductQuery());
+
+      if (
+        response.meta.totalPages > 0 &&
+        response.meta.page > response.meta.totalPages
+      ) {
+        setQuery((prev) => ({ ...prev, page: response.meta.page - 1 }));
+
+        return;
+      }
+
       setProductsResult(response);
     } catch (error) {
       console.error("Failed to load products:", error);

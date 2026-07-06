@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/Select";
+import { PAGE_SIZES } from "@/constants/pagination";
 
 interface PaginationProps {
   page: number;
@@ -16,14 +17,22 @@ interface PaginationProps {
   pageSize: number;
   onPageSizeChange: (pageSize: PageSize) => void;
 }
-const pageSizes: number[] = [10, 20, 50];
+const pageSizes: PageSize[] = PAGE_SIZES;
 export default function Pagination({
   page,
   totalPages,
   onPageChange,
   pageSize,
   onPageSizeChange,
+  totalItems,
 }: PaginationProps) {
+  const formatShowingResults = () => {
+    const start = (page - 1) * pageSize + 1;
+    const end = Math.min(page * pageSize, totalItems);
+
+    return `Showing ${start} to ${end} of ${totalItems} results`;
+  };
+  const showingResults = formatShowingResults();
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-2">
@@ -45,6 +54,8 @@ export default function Pagination({
         </Select>
         <p>per page</p>
       </div>
+
+      <p className="text-sm text-muted-foreground">{showingResults}</p>
 
       <div className="flex items-center gap-2">
         <Button
