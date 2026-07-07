@@ -4,10 +4,9 @@ import SidebarSection from "./SidebarSection";
 
 export default function Sidebar() {
   return (
-    <aside className="flex w-64 flex-col border-r bg-background">
-      <div className="border-b px-6 py-5">
+    <aside className="flex w-72 flex-col border-r bg-background">
+      <div className="border-b h-16 px-5 py-1">
         <h1 className="text-lg font-bold">Inventory</h1>
-
         <p className="text-sm text-muted-foreground">Management System</p>
       </div>
 
