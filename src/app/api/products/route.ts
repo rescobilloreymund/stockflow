@@ -1,6 +1,10 @@
 import { createProductSchema } from "@/schemas/product.schema";
 import { ProductService } from "@/services/product.service";
-import { GetProductsRequest, ProductSortField } from "@/types/product";
+import {
+  GetProductsRequest,
+  ProductSortField,
+  ProductStatus,
+} from "@/types/product";
 import { SortDirection } from "@/types/common";
 const productService = new ProductService();
 
@@ -25,9 +29,14 @@ export async function GET(request: Request) {
     }
 
     const search = searchParams.get("search");
+    const status = searchParams.get("status");
 
     if (search) {
       filters.search = search;
+    }
+
+    if (status) {
+      filters.status = status as ProductStatus;
     }
 
     const categoryId = searchParams.get("categoryId");

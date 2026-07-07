@@ -11,6 +11,8 @@ import EmptyState from "@/components/shared/EmptyState";
 import { PackageOpen, Search } from "lucide-react";
 import ProductsTableSkeleton from "@/components/products/ProductsTableSkeleton";
 import Pagination from "@/components/shared/Pagination";
+import PageContainer from "@/components/layout/PageContainer";
+import { ProductStatus } from "@/types/product";
 
 export default function ProductsPage() {
   const {
@@ -31,6 +33,7 @@ export default function ProductsPage() {
     handleCategoryChange,
     handlePageSizeChange,
     debouncedSearch,
+    handleStatusChange,
 
     editingProduct,
 
@@ -65,11 +68,20 @@ export default function ProductsPage() {
     query.pageSize,
     query.sortBy,
     query.sortDirection,
+    query.status,
   ]);
 
   return (
-    <div className="space-y-1 px-5">
-      <PageHeader title={"Products"} description={"Manage your products"} />
+    <PageContainer>
+      <PageHeader
+        title={"Products"}
+        description={"Manage your products"}
+        action={
+          <Button type="button" onClick={handleAddProductClick}>
+            Add product
+          </Button>
+        }
+      />
       <Card>
         <CardContent className="space-y-6">
           {shouldShowToolbar && (
@@ -79,7 +91,8 @@ export default function ProductsPage() {
               selectedCategory={query.categoryId || 0}
               onCategoryChange={handleCategoryChange}
               categories={categories}
-              onAddProduct={handleAddProductClick}
+              status={(query.status as ProductStatus) ?? "all"}
+              onStatusChange={handleStatusChange}
             />
           )}
 
@@ -135,6 +148,6 @@ export default function ProductsPage() {
           />
         </CardContent>
       </Card>
-    </div>
+    </PageContainer>
   );
 }

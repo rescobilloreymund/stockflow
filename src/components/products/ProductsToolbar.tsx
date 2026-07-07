@@ -7,8 +7,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/Select";
-import { Button } from "../ui/Button";
-
+import { ProductStatus, ProductStatusFilter } from "@/types/product";
+import { ProductStatuses } from "@/constants/products";
+import { formatProductStatus } from "@/utils/formatters/product.formatter";
 interface ProductsToolbarProps {
   search: string;
   onSearchChange: (value: string) => void;
@@ -18,7 +19,8 @@ interface ProductsToolbarProps {
 
   categories: Category[];
 
-  onAddProduct: () => void;
+  status: ProductStatusFilter;
+  onStatusChange: (value: ProductStatusFilter) => void;
 }
 
 export default function ProductsToolbar({
@@ -27,7 +29,8 @@ export default function ProductsToolbar({
   selectedCategory,
   onCategoryChange,
   categories,
-  onAddProduct,
+  status,
+  onStatusChange,
 }: ProductsToolbarProps) {
   return (
     <div className="flex flex-wrap items-center justify-between gap-4">
@@ -55,8 +58,28 @@ export default function ProductsToolbar({
             ))}
           </SelectContent>
         </Select>
+
+        <Select
+          value={status ?? "all"}
+          onValueChange={(value) =>
+            onStatusChange(
+              value === "all" ? undefined : (value as ProductStatusFilter),
+            )
+          }
+        >
+          <SelectTrigger className="min-w-48">
+            <SelectValue placeholder="All statuses" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All statuses</SelectItem>
+            {ProductStatuses.map((value, index) => (
+              <SelectItem value={value} key={index}>
+                {formatProductStatus(value)}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
-      <Button onClick={onAddProduct}>Add product</Button>
     </div>
   );
 }

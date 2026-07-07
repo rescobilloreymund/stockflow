@@ -12,6 +12,9 @@ import {
   GetProductsRequest,
   GetProductsResponse,
   ProductSortField,
+  ProductStatus,
+  ProductsPageQuery,
+  ProductStatusFilter,
 } from "@/types/product";
 import { Supplier } from "@/types/supplier";
 import { useDebounce } from "./useDebounce";
@@ -26,9 +29,10 @@ const supplierApi = new SupplierApi();
 export function useProductsPage() {
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
 
-  const [query, setQuery] = useState<GetProductsRequest>({
+  const [query, setQuery] = useState<ProductsPageQuery>({
     search: "",
     categoryId: 0,
+    status: undefined,
 
     page: 1,
     pageSize: 10,
@@ -186,6 +190,10 @@ export function useProductsPage() {
     setIsLoadingProducts(true);
     setQuery((prev) => ({ ...prev, page }));
   }
+  function handleStatusChange(value: ProductStatusFilter) {
+    setIsLoadingProducts(true);
+    setQuery((prev) => ({ ...prev, status: value, page: 1 }));
+  }
 
   function handleSort(field: ProductSortField) {
     setIsLoadingProducts(true);
@@ -216,6 +224,7 @@ export function useProductsPage() {
     return {
       ...query,
       search: debouncedSearch || undefined,
+      status: query.status,
       categoryId:
         query.categoryId && query.categoryId > 0 ? query.categoryId : undefined,
     };
@@ -237,6 +246,7 @@ export function useProductsPage() {
     handleCategoryChange,
     handlePageChange,
     handlePageSizeChange,
+    handleStatusChange,
     handleSort,
     debouncedSearch,
 

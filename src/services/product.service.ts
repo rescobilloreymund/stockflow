@@ -10,14 +10,26 @@ import {
 } from "@/types/product";
 export class ProductService {
   async getProducts(filters: GetProductsRequest): Promise<GetProductsResponse> {
-    const { search, categoryId, page, pageSize, sortBy, sortDirection } =
-      filters;
+    const {
+      search,
+      categoryId,
+      page,
+      pageSize,
+      sortBy,
+      sortDirection,
+      status,
+    } = filters;
+    console.log(typeof status, status);
     const where: Prisma.ProductWhereInput = {};
     if (search) {
       where.name = {
         contains: search,
         mode: "insensitive",
       };
+    }
+
+    if (status) {
+      where.status = status;
     }
 
     if (categoryId) {

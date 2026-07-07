@@ -1,8 +1,8 @@
 import { Category } from "./category";
 import { Supplier } from "./supplier";
-import { PaginationMeta, SortDirection } from "./common";
+import { PageSize, PaginationMeta, SortDirection } from "./common";
 export type ProductStatus = "ACTIVE" | "INACTIVE" | "DISCONTINUED";
-
+export type ProductStatusFilter = ProductStatus | undefined;
 export interface Product {
   id: number;
   name: string;
@@ -32,9 +32,23 @@ export interface ProductWithRelations extends Product {
 export interface GetProductsRequest {
   search?: string;
   categoryId?: number;
+  status?: ProductStatus;
 
   page: number;
   pageSize: number;
+
+  sortBy: ProductSortField;
+  sortDirection: SortDirection;
+}
+
+export interface ProductsPageQuery {
+  search: string;
+  categoryId: number;
+
+  status: ProductStatusFilter;
+
+  page: number;
+  pageSize: PageSize;
 
   sortBy: ProductSortField;
   sortDirection: SortDirection;

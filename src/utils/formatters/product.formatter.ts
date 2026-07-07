@@ -1,6 +1,6 @@
 import { ProductStatus } from "@/generated/prisma/enums";
 
-const PRODUCT_STATUS_LABELS: Record<ProductStatus, string> = {
+export const PRODUCT_STATUS_LABELS: Record<ProductStatus, string> = {
   ACTIVE: "Active",
   INACTIVE: "Inactive",
   DISCONTINUED: "Discontinued",
