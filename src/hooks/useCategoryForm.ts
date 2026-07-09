@@ -1,11 +1,14 @@
-import { CreateCategoryRequest, Category } from "@/types/category";
+import { Category } from "@/types/category";
 import { useEffect } from "react";
 import { categoryToFormData } from "@/utils/mappers/categories/category-form.mapper";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createCategorySchema } from "@/schemas/category.schema";
+import {
+  CategoryFormData,
+  createCategorySchema,
+} from "@/schemas/category.schema";
 
-const initialForm: CreateCategoryRequest = {
+const initialForm: CategoryFormData = {
   name: "",
 };
 
@@ -14,7 +17,7 @@ interface UseCategoryFormProps {
 }
 
 export function useCategoryForm({ editingCategory }: UseCategoryFormProps) {
-  const form = useForm<CreateCategoryRequest>({
+  const form = useForm<CategoryFormData>({
     resolver: zodResolver(createCategorySchema),
     defaultValues: editingCategory
       ? categoryToFormData(editingCategory)

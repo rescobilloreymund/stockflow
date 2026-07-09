@@ -1,11 +1,11 @@
-import { CreateProductRequest, Product } from "@/types/product";
+import { Product } from "@/types/product";
 import { useEffect } from "react";
 import { productToFormData } from "@/utils/mappers/products/product-form.mapper";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createProductSchema } from "@/schemas/product.schema";
+import { createProductSchema, ProductFormData } from "@/schemas/product.schema";
 
-const initialForm: CreateProductRequest = {
+const initialForm: ProductFormData = {
   name: "",
   sku: "",
   categoryId: 0,
@@ -20,7 +20,7 @@ interface UseProductFormProps {
 }
 
 export function useProductForm({ editingProduct }: UseProductFormProps) {
-  const form = useForm<CreateProductRequest>({
+  const form = useForm<ProductFormData>({
     resolver: zodResolver(createProductSchema),
     defaultValues: editingProduct
       ? productToFormData(editingProduct)

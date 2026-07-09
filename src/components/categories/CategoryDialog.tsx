@@ -5,13 +5,14 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import CategoryForm from "@/components/categories/CategoryForm";
-import { Category, CreateCategoryRequest } from "@/types/category";
+import { Category } from "@/types/category";
+import { CategoryFormData } from "@/schemas/category.schema";
 
 interface CategoryDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   category: Category | null;
-  onSubmit: (category: CreateCategoryRequest) => Promise<void>;
+  onSubmit: (category: CategoryFormData) => Promise<void>;
 }
 
 export default function CategoryDialog({
@@ -20,7 +21,7 @@ export default function CategoryDialog({
   category,
   onSubmit,
 }: CategoryDialogProps) {
-  async function handleSubmit(data: CreateCategoryRequest) {
+  async function handleSubmit(data: CategoryFormData) {
     await onSubmit(data);
     onOpenChange(false);
   }

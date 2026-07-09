@@ -5,9 +5,10 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import ProductForm from "@/components/products/ProductForm";
-import { Product, CreateProductRequest } from "@/types/product";
+import { Product } from "@/types/product";
 import { CategoryOption } from "@/types/category";
 import { SupplierOption } from "@/types/supplier";
+import { ProductFormData } from "@/schemas/product.schema";
 
 interface ProductDialogProps {
   open: boolean;
@@ -15,7 +16,7 @@ interface ProductDialogProps {
   product: Product | null;
   categories: CategoryOption[];
   suppliers: SupplierOption[];
-  onSubmit: (product: CreateProductRequest) => Promise<void>;
+  onSubmit: (product: ProductFormData) => Promise<void>;
 }
 
 export default function ProductDialog({
@@ -26,7 +27,7 @@ export default function ProductDialog({
   suppliers,
   onSubmit,
 }: ProductDialogProps) {
-  async function handleSubmit(data: CreateProductRequest) {
+  async function handleSubmit(data: ProductFormData) {
     await onSubmit(data);
     onOpenChange(false);
   }

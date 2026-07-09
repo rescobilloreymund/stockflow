@@ -11,4 +11,4 @@ export const createProductSchema = z.object({
   status: z.enum(ProductStatus),
 });
 
-export type CreateProductRequest = z.infer<typeof createProductSchema>;
+export type ProductFormData = z.infer<typeof createProductSchema>;

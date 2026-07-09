@@ -2,12 +2,13 @@ import { Input } from "../ui/Input";
 import { Button } from "../ui/Button";
 
 import { useCategoryForm } from "@/hooks/useCategoryForm";
-import { Category, CreateCategoryRequest } from "@/types/category";
+import { Category } from "@/types/category";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
+import { CategoryFormData } from "@/schemas/category.schema";
 
 interface CategoryFormProps {
-  defaultValues?: CreateCategoryRequest;
-  onSubmit: (data: CreateCategoryRequest) => void;
+  defaultValues?: CategoryFormData;
+  onSubmit: (data: CategoryFormData) => void;
   editingCategory: Category | null;
 }
 

@@ -15,6 +15,8 @@ import { toast } from "sonner";
 import { toggleSortDirection } from "@/utils/common.helper";
 import { PageSize } from "@/types/common";
 import { EMPTY_PAGINATION } from "@/constants/pagination";
+import { CategoryFormData } from "@/schemas/category.schema";
+import { toRequest } from "@/utils/mappers/categories/category-request";
 
 const categoryApi = new CategoryApi();
 
@@ -74,9 +76,9 @@ export function useCategoriesPage() {
     }
   }
   // crud
-  async function handleAddCategory(category: CreateCategoryRequest) {
+  async function handleAddCategory(category: CategoryFormData) {
     try {
-      await categoryApi.createCategory(category);
+      await categoryApi.createCategory(toRequest(category));
       await loadCategories();
 
       toast.success("Category created successfully");
@@ -87,10 +89,10 @@ export function useCategoriesPage() {
     }
   }
 
-  async function handleUpdateCategory(category: UpdateCategoryRequest) {
+  async function handleUpdateCategory(category: CategoryFormData) {
     if (!editingCategory) return;
     try {
-      await categoryApi.updateCategory(editingCategory.id, category);
+      await categoryApi.updateCategory(editingCategory.id, toRequest(category));
       await loadCategories();
       toast.success("Category updated successfully");
     } catch (error) {

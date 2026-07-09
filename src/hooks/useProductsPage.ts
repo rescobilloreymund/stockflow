@@ -21,6 +21,8 @@ import { toast } from "sonner";
 import { toggleSortDirection } from "@/utils/common.helper";
 import { PageSize } from "@/types/common";
 import { EMPTY_PAGINATION } from "@/constants/pagination";
+import { ProductFormData } from "@/schemas/product.schema";
+import { toRequest } from "@/utils/mappers/products/product-request.mapper";
 
 const categoryApi = new CategoryApi();
 const productApi = new ProductApi();
@@ -109,9 +111,9 @@ export function useProductsPage() {
   }
 
   // crud
-  async function handleAddProduct(product: CreateProductRequest) {
+  async function handleAddProduct(product: ProductFormData) {
     try {
-      await productApi.createProduct(product);
+      await productApi.createProduct(toRequest(product));
       await loadProducts();
 
       toast.success("Product created successfully");
@@ -122,10 +124,10 @@ export function useProductsPage() {
     }
   }
 
-  async function handleUpdateProduct(product: UpdateProductRequest) {
+  async function handleUpdateProduct(product: ProductFormData) {
     if (!editingProduct) return;
     try {
-      await productApi.updateProduct(editingProduct.id, product);
+      await productApi.updateProduct(editingProduct.id, toRequest(product));
       await loadProducts();
       toast.success("Product updated successfully");
     } catch (error) {
