@@ -1,6 +1,6 @@
 import { CreateProductRequest, Product } from "@/types/product";
 import { useEffect } from "react";
-import { productToFormData } from "@/utils/mappers/product-form.mapper";
+import { productToFormData } from "@/utils/mappers/products/product-form.mapper";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createProductSchema } from "@/schemas/product.schema";

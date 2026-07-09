@@ -7,7 +7,7 @@ import {
   GetCategoriesResponse,
   UpdateCategoryRequest,
 } from "@/types/category";
-import { toCategories } from "@/utils/mappers/category.mapper";
+import { toCategories } from "@/utils/mappers/categories/category.mapper";
 
 export class CategoryService {
   async getCategories(

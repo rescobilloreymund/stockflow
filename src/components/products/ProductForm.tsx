@@ -9,8 +9,8 @@ import {
 } from "../ui/Select";
 import { useProductForm } from "@/hooks/useProductForm";
 import { Product, CreateProductRequest } from "@/types/product";
-import { Category } from "@/types/category";
-import { Supplier } from "@/types/supplier";
+import { CategoryOption } from "@/types/category";
+import { SupplierOption } from "@/types/supplier";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Controller } from "react-hook-form";
 
@@ -18,8 +18,8 @@ interface ProductFormProps {
   defaultValues?: CreateProductRequest;
   onSubmit: (data: CreateProductRequest) => void;
   editingProduct: Product | null;
-  categories: Category[];
-  suppliers: Supplier[];
+  categories: CategoryOption[];
+  suppliers: SupplierOption[];
 }
 
 export default function ProductForm({

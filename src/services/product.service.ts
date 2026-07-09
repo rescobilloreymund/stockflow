@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@/generated/prisma/client";
-import { toProducts } from "@/utils/mappers/product.mapper";
+import { toProducts } from "@/utils/mappers/products/product.mapper";
 import {
   CreateProductRequest,
   GetProductsRequest,

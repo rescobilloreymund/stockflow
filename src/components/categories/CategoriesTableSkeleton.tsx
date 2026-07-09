@@ -21,7 +21,7 @@ export default function CategoriesTableSkeleton() {
           </TableHead>
           <TableHead>
             <p className="text-[0.8rem] p-0 font-semibold flex items-center gap-1">
-              Date Created
+              Created
             </p>
           </TableHead>
           <TableHead className="text-center">Action</TableHead>

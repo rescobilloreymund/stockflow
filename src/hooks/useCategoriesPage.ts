@@ -14,6 +14,7 @@ import { useDebounce } from "./useDebounce";
 import { toast } from "sonner";
 import { toggleSortDirection } from "@/utils/common.helper";
 import { PageSize } from "@/types/common";
+import { EMPTY_PAGINATION } from "@/constants/pagination";
 
 const categoryApi = new CategoryApi();
 
@@ -35,12 +36,7 @@ export function useCategoriesPage() {
   const [categoriesResult, setCategoriesResult] =
     useState<GetCategoriesResponse | null>(null);
   const categories = categoriesResult?.data ?? [];
-  const pagination = categoriesResult?.meta ?? {
-    page: 1,
-    pageSize: 10,
-    totalItems: 0,
-    totalPages: 0,
-  };
+  const pagination = categoriesResult?.meta ?? EMPTY_PAGINATION;
 
   // derived states
   const hasFilters: boolean = query.search?.trim() != "";

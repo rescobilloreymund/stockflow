@@ -1,4 +1,4 @@
-import { Product } from "@/types/product";
+import { Supplier } from "@/types/supplier";
 import { Button } from "../ui/Button";
 import {
   DropdownMenu,
@@ -11,31 +11,35 @@ import {
 import { MoreHorizontal, PencilIcon, TrashIcon } from "lucide-react";
 import ConfirmationDialog from "../shared/ConfirmationDialog";
 import { useState } from "react";
-interface ProductRowActionsProps {
-  product: Product;
+interface SupplierRowActionsProps {
+  supplier: Supplier;
 
-  onEdit: (product: Product) => void;
+  onEdit: (supplier: Supplier) => void;
 
   onDelete: (id: number) => Promise<void>;
 }
 
-export default function ProductRowActions({
-  product,
+export default function SupplierRowActions({
+  supplier,
   onEdit,
   onDelete,
-}: ProductRowActionsProps) {
+}: SupplierRowActionsProps) {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="icon" aria-label="Open product actions">
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Open supplier actions"
+          >
             <MoreHorizontal />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuGroup>
-            <DropdownMenuItem onClick={() => onEdit(product)}>
+            <DropdownMenuItem onClick={() => onEdit(supplier)}>
               <PencilIcon className="size-4" />
               Edit
             </DropdownMenuItem>
@@ -54,13 +58,13 @@ export default function ProductRowActions({
       </DropdownMenu>
 
       <ConfirmationDialog
-        title="Delete Product"
-        description={`Are you sure you want to delete "${product.name}"? This action cannot be undone.`}
+        title="Delete Supplier"
+        description={`Are you sure you want to delete "${supplier.name}"? This action cannot be undone.`}
         confirmText="Delete"
         cancelText="Cancel"
         open={isDeleteDialogOpen}
         onOpenChange={setIsDeleteDialogOpen}
-        onConfirm={() => onDelete(product.id)}
+        onConfirm={() => onDelete(supplier.id)}
       />
     </>
   );

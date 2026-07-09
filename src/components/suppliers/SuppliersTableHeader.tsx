@@ -1,30 +1,32 @@
 import { TableHeader, TableRow, TableHead } from "@/components/ui/table";
 import { SortDirection } from "@/types/common";
-import { CategorySortField } from "@/types/category";
+import { SupplierSortField } from "@/types/supplier";
 import SortableHeader from "@/components/shared/SortableHeader";
 
-interface CategoriesTableHeaderProps {
-  sortBy: CategorySortField;
+interface SuppliersTableHeaderProps {
+  sortBy: SupplierSortField;
   sortDirection: SortDirection;
-  onSort: (field: CategorySortField) => void;
+  onSort: (field: SupplierSortField) => void;
 }
 
-export default function CategoriesTableHeader({
+export default function SuppliersTableHeader({
   sortBy,
   sortDirection,
   onSort,
-}: CategoriesTableHeaderProps) {
+}: SuppliersTableHeaderProps) {
   return (
     <TableHeader>
       <TableRow>
         <TableHead>
           <SortableHeader
-            label="Category"
+            label="Supplier"
             isActive={sortBy === "name"}
             direction={sortDirection}
             onClick={() => onSort("name")}
           />
         </TableHead>
+        <TableHead>Contact</TableHead>
+        <TableHead>Phone</TableHead>
         <TableHead>
           <SortableHeader
             label="Created"
@@ -33,7 +35,6 @@ export default function CategoriesTableHeader({
             onClick={() => onSort("createdAt")}
           />
         </TableHead>
-
         <TableHead className="text-center">Actions</TableHead>
       </TableRow>
     </TableHeader>

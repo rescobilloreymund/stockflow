@@ -6,15 +6,15 @@ import {
 } from "@/components/ui/dialog";
 import ProductForm from "@/components/products/ProductForm";
 import { Product, CreateProductRequest } from "@/types/product";
-import { Category } from "@/types/category";
-import { Supplier } from "@/types/supplier";
+import { CategoryOption } from "@/types/category";
+import { SupplierOption } from "@/types/supplier";
 
 interface ProductDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   product: Product | null;
-  categories: Category[];
-  suppliers: Supplier[];
+  categories: CategoryOption[];
+  suppliers: SupplierOption[];
   onSubmit: (product: CreateProductRequest) => Promise<void>;
 }
 

@@ -15,11 +15,12 @@ import {
   ProductsPageQuery,
   ProductStatusFilter,
 } from "@/types/product";
-import { Supplier } from "@/types/supplier";
+import { Supplier, SupplierOption } from "@/types/supplier";
 import { useDebounce } from "./useDebounce";
 import { toast } from "sonner";
 import { toggleSortDirection } from "@/utils/common.helper";
 import { PageSize } from "@/types/common";
+import { EMPTY_PAGINATION } from "@/constants/pagination";
 
 const categoryApi = new CategoryApi();
 const productApi = new ProductApi();
@@ -44,18 +45,13 @@ export function useProductsPage() {
 
   // categories and suppliers are loaded on demand
   const [categories, setCategories] = useState<CategoryOption[]>([]);
-  const [suppliers, setSuppliers] = useState<Supplier[]>([]);
+  const [suppliers, setSuppliers] = useState<SupplierOption[]>([]);
 
   // products are loaded on demand
   const [productsResult, setProductsResult] =
     useState<GetProductsResponse | null>(null);
   const products = productsResult?.data ?? [];
-  const pagination = productsResult?.meta ?? {
-    page: 1,
-    pageSize: 10,
-    totalItems: 0,
-    totalPages: 0,
-  };
+  const pagination = productsResult?.meta ?? EMPTY_PAGINATION;
 
   // derived states
   const hasFilters: boolean =
@@ -78,7 +74,7 @@ export function useProductsPage() {
   }
 
   async function loadSuppliers() {
-    const data = await supplierApi.getSuppliers();
+    const data = await supplierApi.getSupplierOptions();
     setSuppliers(data);
   }
 

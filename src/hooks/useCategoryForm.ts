@@ -1,6 +1,6 @@
 import { CreateCategoryRequest, Category } from "@/types/category";
 import { useEffect } from "react";
-import { categoryToFormData } from "@/utils/mappers/category-form.mapper";
+import { categoryToFormData } from "@/utils/mappers/categories/category-form.mapper";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createCategorySchema } from "@/schemas/category.schema";

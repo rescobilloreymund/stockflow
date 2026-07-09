@@ -1,4 +1,4 @@
-import { Category } from "@/types/category";
+import { Category, CategoryOption } from "@/types/category";
 import { Input } from "../ui/Input";
 import {
   Select,
@@ -17,7 +17,7 @@ interface ProductsToolbarProps {
   selectedCategory: number;
   onCategoryChange: (value: number) => void;
 
-  categories: Category[];
+  categories: CategoryOption[];
 
   status: ProductStatusFilter;
   onStatusChange: (value: ProductStatusFilter) => void;

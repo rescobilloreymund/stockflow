@@ -7,22 +7,23 @@ import {
   TableHeader,
   TableHead,
 } from "@/components/ui/table";
-import ProductsTableColGroup from "./ProductsTableColGroup";
-export default function ProductsTableSkeleton() {
+import SuppliersTableColGroup from "./SuppliersTableColGroup";
+export default function SuppliersTableSkeleton() {
   return (
     <Table className="w-full table-fixed">
-      <ProductsTableColGroup />
+      <SuppliersTableColGroup />
       <TableHeader>
         <TableRow>
           <TableHead>
             <p className="text-[0.8rem] p-0 font-semibold flex items-center gap-1">
-              Product
+              Name
             </p>
           </TableHead>
-          <TableHead className="text-center">Status</TableHead>
-          <TableHead className="text-right">
-            <p className="text-[0.8rem] p-0 font-semibold flex items-center gap-1 justify-end">
-              Price
+          <TableHead>Contact</TableHead>
+          <TableHead>Phone</TableHead>
+          <TableHead>
+            <p className="text-[0.8rem] p-0 font-semibold flex items-center gap-1">
+              Created
             </p>
           </TableHead>
           <TableHead className="text-center">Action</TableHead>
