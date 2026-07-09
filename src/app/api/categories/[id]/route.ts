@@ -1,7 +1,7 @@
-import { createProductSchema } from "@/schemas/product.schema";
-import { ProductService } from "@/services/product.service";
+import { createCategorySchema } from "@/schemas/category.schema";
+import { CategoryService } from "@/services/category.service";
 
-const productService = new ProductService();
+const categoryService = new CategoryService();
 export async function PUT(
   request: Request,
   { params }: { params: { id: string } },
@@ -9,12 +9,12 @@ export async function PUT(
   try {
     const { id } = await params;
 
-    const productId = Number(id);
+    const categoryId = Number(id);
 
-    if (Number.isNaN(productId)) {
+    if (Number.isNaN(categoryId)) {
       return Response.json(
         {
-          message: "Invalid product id.",
+          message: "Invalid category id.",
         },
         { status: 400 },
       );
@@ -22,7 +22,7 @@ export async function PUT(
 
     const data = await request.json();
 
-    const result = createProductSchema.safeParse(data);
+    const result = createCategorySchema.safeParse(data);
 
     if (!result.success) {
       const errors: Record<string, string> = {};
@@ -46,15 +46,18 @@ export async function PUT(
       );
     }
 
-    const product = await productService.updateProduct(productId, result.data);
+    const category = await categoryService.updateCategory(
+      categoryId,
+      result.data,
+    );
 
-    return Response.json(product, { status: 200 });
+    return Response.json(category, { status: 200 });
   } catch (error) {
     console.error(error);
 
     return Response.json(
       {
-        message: "Failed to update product.",
+        message: "Failed to update category.",
       },
       {
         status: 500,
@@ -70,18 +73,18 @@ export async function DELETE(
   try {
     const { id } = await params;
 
-    const productId = Number(id);
+    const categoryId = Number(id);
 
-    if (Number.isNaN(productId)) {
+    if (Number.isNaN(categoryId)) {
       return Response.json(
         {
-          message: "Invalid product id.",
+          message: "Invalid category id.",
         },
         { status: 400 },
       );
     }
 
-    await productService.deleteProduct(productId);
+    await categoryService.deleteCategory(categoryId);
 
     return new Response(null, { status: 204 });
   } catch (error) {
@@ -89,7 +92,7 @@ export async function DELETE(
 
     return Response.json(
       {
-        message: "Failed to delete product.",
+        message: "Failed to delete category.",
       },
       {
         status: 500,

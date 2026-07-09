@@ -4,7 +4,7 @@ import { CategoryApi } from "@/api/categories.api";
 import { ProductApi } from "@/api/products.api";
 import { SupplierApi } from "@/api/suppliers.api";
 
-import { Category } from "@/types/category";
+import { Category, CategoryOption } from "@/types/category";
 import {
   Product,
   CreateProductRequest,
@@ -12,7 +12,6 @@ import {
   GetProductsRequest,
   GetProductsResponse,
   ProductSortField,
-  ProductStatus,
   ProductsPageQuery,
   ProductStatusFilter,
 } from "@/types/product";
@@ -44,7 +43,7 @@ export function useProductsPage() {
   const debouncedSearch = useDebounce(query.search);
 
   // categories and suppliers are loaded on demand
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<CategoryOption[]>([]);
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
 
   // products are loaded on demand
@@ -74,7 +73,7 @@ export function useProductsPage() {
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
 
   async function loadCategories() {
-    const data = await categoryApi.getCategories();
+    const data = await categoryApi.getCategoryOptions();
     setCategories(data);
   }
 

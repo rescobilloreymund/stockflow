@@ -62,10 +62,8 @@ export class ProductApi extends BaseApi {
   }
 
   deleteProduct(id: number): Promise<void> {
-    const deleteRequest = this.fetchRequest<void>(`/api/products/${id}`, {
+    return this.fetchRequest<void>(`/api/products/${id}`, {
       method: "DELETE",
     });
-
-    return deleteRequest;
   }
 }
