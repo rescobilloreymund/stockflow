@@ -34,7 +34,7 @@ export function useProductsPage() {
   const [query, setQuery] = useState<ProductsPageQuery>({
     search: "",
     categoryId: 0,
-    status: undefined,
+    status: "all",
 
     page: 1,
     pageSize: 10,
@@ -221,7 +221,7 @@ export function useProductsPage() {
     return {
       ...query,
       search: debouncedSearch || undefined,
-      status: query.status,
+      status: query.status === "all" ? undefined : query.status,
       categoryId:
         query.categoryId && query.categoryId > 0 ? query.categoryId : undefined,
     };

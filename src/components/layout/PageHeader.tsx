@@ -11,7 +11,7 @@ export default function PageHeader({
 }: PageHeaderProps) {
   return (
     <div className="flex items-end justify-between">
-      <div className="space-y-0.5">
+      <div className="space-y-1">
         <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
         {description && <p className="text-muted-foreground">{description}</p>}
       </div>

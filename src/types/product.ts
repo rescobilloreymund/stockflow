@@ -2,7 +2,7 @@ import { Category } from "./category";
 import { Supplier } from "./supplier";
 import { PageSize, PaginationMeta, SortDirection } from "./common";
 export type ProductStatus = "ACTIVE" | "INACTIVE" | "DISCONTINUED";
-export type ProductStatusFilter = ProductStatus | undefined;
+export type ProductStatusFilter = ProductStatus | "all";
 export interface Product {
   id: number;
   name: string;

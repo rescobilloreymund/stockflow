@@ -14,7 +14,7 @@ export default function CategoryRow({
   onDelete,
 }: CategoryRowProps) {
   return (
-    <TableRow>
+    <TableRow className="transition-colors hover:bg-muted/40">
       <TableCell>
         <div className="flex flex-col gap-0.5">
           <span className="font-medium text-foreground">{category.name}</span>

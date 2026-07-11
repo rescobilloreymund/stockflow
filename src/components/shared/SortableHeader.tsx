@@ -27,13 +27,15 @@ export default function SortableHeader({
         hover:bg-transparent
         justify-start"
     >
-      <span>{label}</span>
+      <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+        {label}
+      </span>
       {!isActive ? (
-        <ArrowUpDown className="size-4" />
+        <ArrowUpDown className="size-4 text-muted-foreground" />
       ) : direction === "asc" ? (
-        <ArrowUp className="size-4" />
+        <ArrowUp className="size-4 text-muted-foreground" />
       ) : (
-        <ArrowDown className="size-4" />
+        <ArrowDown className="size-4 text-muted-foreground" />
       )}
     </Button>
   );

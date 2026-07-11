@@ -1,4 +1,4 @@
-import { Input } from "../ui/Input";
+import SearchInput from "../shared/SearchInput";
 
 interface CategoriesToolbarProps {
   search: string;
@@ -12,12 +12,10 @@ export default function CategoriesToolbar({
   return (
     <div className="flex flex-wrap items-center justify-between gap-4">
       <div className="flex items-center gap-2">
-        <Input
-          type="text"
+        <SearchInput
           value={search}
-          onChange={(e) => onSearchChange(e.target.value)}
+          onChange={onSearchChange}
           placeholder="Search categories..."
-          className="min-w-80"
         />
       </div>
     </div>

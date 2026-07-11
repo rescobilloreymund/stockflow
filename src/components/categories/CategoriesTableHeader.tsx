@@ -34,7 +34,9 @@ export default function CategoriesTableHeader({
           />
         </TableHead>
 
-        <TableHead className="text-center">Actions</TableHead>
+        <TableHead className="text-center text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          Actions
+        </TableHead>
       </TableRow>
     </TableHeader>
   );

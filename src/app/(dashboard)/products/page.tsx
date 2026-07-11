@@ -8,7 +8,7 @@ import PageHeader from "@/components/layout/PageHeader";
 import ProductsToolbar from "@/components/products/ProductsToolbar";
 import { Button } from "@/components/ui/Button";
 import EmptyState from "@/components/shared/EmptyState";
-import { PackageOpen, Search } from "lucide-react";
+import { PackageOpen, Plus, Search } from "lucide-react";
 import ProductsTableSkeleton from "@/components/products/ProductsTableSkeleton";
 import Pagination from "@/components/shared/Pagination";
 import PageContainer from "@/components/layout/PageContainer";
@@ -78,6 +78,7 @@ export default function ProductsPage() {
         description={"Manage your products"}
         action={
           <Button type="button" onClick={handleAddProductClick}>
+            <Plus className="mr-2 h-4 w-4" />
             Add product
           </Button>
         }
@@ -91,7 +92,7 @@ export default function ProductsPage() {
               selectedCategory={query.categoryId || 0}
               onCategoryChange={handleCategoryChange}
               categories={categories}
-              status={(query.status as ProductStatus) ?? "all"}
+              status={query.status ?? "all"}
               onStatusChange={handleStatusChange}
             />
           )}

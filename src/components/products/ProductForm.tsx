@@ -38,7 +38,7 @@ export default function ProductForm({
     editingProduct,
   });
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <Field>
         <FieldLabel htmlFor="name">Product Name</FieldLabel>
         <FieldContent>

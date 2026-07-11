@@ -8,7 +8,7 @@ import PageHeader from "@/components/layout/PageHeader";
 import SuppliersToolbar from "@/components/suppliers/SuppliersToolbar";
 import { Button } from "@/components/ui/Button";
 import EmptyState from "@/components/shared/EmptyState";
-import { FolderTree, Search, Truck } from "lucide-react";
+import { Plus, Search, Truck } from "lucide-react";
 import Pagination from "@/components/shared/Pagination";
 import PageContainer from "@/components/layout/PageContainer";
 import SuppliersTableSkeleton from "@/components/suppliers/SuppliersTableSkeleton";
@@ -57,14 +57,15 @@ export default function SuppliersPage() {
     <PageContainer>
       <PageHeader
         title={"Suppliers"}
-        description={"Manage your suppliers"}
+        description={"Manage suppliers, contacts and procurement partners."}
         action={
-          <Button type="button" onClick={handleAddSupplierClick}>
-            Add supplier
+          <Button onClick={handleAddSupplierClick}>
+            <Plus className="mr-2 h-4 w-4" />
+            Add Supplier
           </Button>
         }
       />
-      <Card>
+      <Card className="bg-background">
         <CardContent className="space-y-6">
           {shouldShowToolbar && (
             <SuppliersToolbar

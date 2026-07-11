@@ -17,7 +17,7 @@ export default function ProductRow({
   onDelete,
 }: ProductRowProps) {
   return (
-    <TableRow>
+    <TableRow className="transition-colors hover:bg-muted/40">
       <TableCell>
         <div className="flex flex-col gap-0.5">
           <span className="font-medium text-foreground">{product.name}</span>

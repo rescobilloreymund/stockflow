@@ -17,7 +17,7 @@ export default function ProductsTableHeader({
   return (
     <TableHeader>
       <TableRow>
-        <TableHead>
+        <TableHead className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
           <SortableHeader
             label="Product"
             isActive={sortBy === "name"}
@@ -25,8 +25,10 @@ export default function ProductsTableHeader({
             onClick={() => onSort("name")}
           />
         </TableHead>
-        <TableHead className="text-center">Status</TableHead>
-        <TableHead className="text-right">
+        <TableHead className="text-center text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          Status
+        </TableHead>
+        <TableHead className="text-right text-xs font-semibold uppercase tracking-wide text-muted-foreground">
           <SortableHeader
             label="Price"
             isActive={sortBy === "price"}
@@ -34,7 +36,9 @@ export default function ProductsTableHeader({
             onClick={() => onSort("price")}
           />
         </TableHead>
-        <TableHead className="text-center">Actions</TableHead>
+        <TableHead className="text-center text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          Actions
+        </TableHead>
       </TableRow>
     </TableHeader>
   );

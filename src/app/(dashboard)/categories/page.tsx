@@ -8,7 +8,7 @@ import PageHeader from "@/components/layout/PageHeader";
 import CategoriesToolbar from "@/components/categories/CategoriesToolbar";
 import { Button } from "@/components/ui/Button";
 import EmptyState from "@/components/shared/EmptyState";
-import { FolderTree, Search } from "lucide-react";
+import { FolderTree, Plus, Search } from "lucide-react";
 import CategoriesTableSkeleton from "@/components/categories/CategoriesTableSkeleton";
 import Pagination from "@/components/shared/Pagination";
 import PageContainer from "@/components/layout/PageContainer";
@@ -65,6 +65,7 @@ export default function CategoriesPage() {
         description={"Manage your categories"}
         action={
           <Button type="button" onClick={handleAddCategoryClick}>
+            <Plus className="mr-2 h-4 w-4" />
             Add category
           </Button>
         }

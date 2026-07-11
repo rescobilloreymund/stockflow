@@ -1,4 +1,4 @@
-import { Category, CategoryOption } from "@/types/category";
+import { CategoryOption } from "@/types/category";
 import { Input } from "../ui/Input";
 import {
   Select,
@@ -7,9 +7,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/Select";
-import { ProductStatus, ProductStatusFilter } from "@/types/product";
+import { ProductStatusFilter } from "@/types/product";
 import { ProductStatuses } from "@/constants/products";
 import { formatProductStatus } from "@/utils/formatters/product.formatter";
+import SearchInput from "../shared/SearchInput";
 interface ProductsToolbarProps {
   search: string;
   onSearchChange: (value: string) => void;
@@ -35,12 +36,10 @@ export default function ProductsToolbar({
   return (
     <div className="flex flex-wrap items-center justify-between gap-4">
       <div className="flex items-center gap-2">
-        <Input
-          type="text"
+        <SearchInput
           value={search}
-          onChange={(e) => onSearchChange(e.target.value)}
+          onChange={onSearchChange}
           placeholder="Search products..."
-          className="min-w-80"
         />
         <Select
           value={selectedCategory.toString()}
@@ -59,21 +58,14 @@ export default function ProductsToolbar({
           </SelectContent>
         </Select>
 
-        <Select
-          value={status ?? "all"}
-          onValueChange={(value) =>
-            onStatusChange(
-              value === "all" ? undefined : (value as ProductStatusFilter),
-            )
-          }
-        >
+        <Select value={status ?? "all"} onValueChange={onStatusChange}>
           <SelectTrigger className="min-w-48">
             <SelectValue placeholder="All statuses" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All statuses</SelectItem>
-            {ProductStatuses.map((value, index) => (
-              <SelectItem value={value} key={index}>
+            {ProductStatuses.map((value) => (
+              <SelectItem value={value} key={value}>
                 {formatProductStatus(value)}
               </SelectItem>
             ))}

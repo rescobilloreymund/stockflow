@@ -5,7 +5,7 @@ export const inventoryStatusVariant = {
 } as const;
 
 export const productStatusVariant = {
-  ACTIVE: "default",
-  INACTIVE: "secondary",
+  ACTIVE: "success",
+  INACTIVE: "warning",
   DISCONTINUED: "destructive",
 } as const;

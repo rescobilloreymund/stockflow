@@ -17,7 +17,7 @@ export default function SuppliersTableHeader({
   return (
     <TableHeader>
       <TableRow>
-        <TableHead>
+        <TableHead className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
           <SortableHeader
             label="Supplier"
             isActive={sortBy === "name"}
@@ -25,9 +25,13 @@ export default function SuppliersTableHeader({
             onClick={() => onSort("name")}
           />
         </TableHead>
-        <TableHead>Contact</TableHead>
-        <TableHead>Phone</TableHead>
-        <TableHead>
+        <TableHead className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          Contact
+        </TableHead>
+        <TableHead className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          Phone
+        </TableHead>
+        <TableHead className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
           <SortableHeader
             label="Created"
             isActive={sortBy === "createdAt"}
@@ -35,7 +39,9 @@ export default function SuppliersTableHeader({
             onClick={() => onSort("createdAt")}
           />
         </TableHead>
-        <TableHead className="text-center">Actions</TableHead>
+        <TableHead className="text-center text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          Actions
+        </TableHead>
       </TableRow>
     </TableHeader>
   );

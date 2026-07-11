@@ -7,9 +7,8 @@ export default function PageContainer({ children }: PageContainerProps) {
     <div
       className="
         min-h-full
-        px-8
-        py-6
-        space-y-6
+        p-8
+        space-y-8
         "
     >
       {children}
