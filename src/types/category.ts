@@ -32,8 +32,3 @@ export interface CreateCategoryRequest {
 export interface UpdateCategoryRequest {
   name: string;
 }
-
-export interface CategoryOption {
-  id: number;
-  name: string;
-}

@@ -12,7 +12,8 @@ export abstract class BaseApi {
     url: string,
     options?: RequestInit,
   ): Promise<T> {
-    const response = await fetch(url, options);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL!;
+    const response = await fetch(`${API_URL}${url}`, options);
 
     if (!response.ok) {
       await this.throwApiError(response);

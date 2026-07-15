@@ -4,18 +4,15 @@ import { CategoryApi } from "@/api/categories.api";
 import { ProductApi } from "@/api/products.api";
 import { SupplierApi } from "@/api/suppliers.api";
 
-import { Category, CategoryOption } from "@/types/category";
 import {
   Product,
-  CreateProductRequest,
-  UpdateProductRequest,
   GetProductsRequest,
   GetProductsResponse,
   ProductSortField,
   ProductsPageQuery,
   ProductStatusFilter,
 } from "@/types/product";
-import { Supplier, SupplierOption } from "@/types/supplier";
+import { Option } from "@/types/option";
 import { useDebounce } from "./useDebounce";
 import { toast } from "sonner";
 import { toggleSortDirection } from "@/utils/common.helper";
@@ -46,8 +43,8 @@ export function useProductsPage() {
   const debouncedSearch = useDebounce(query.search);
 
   // categories and suppliers are loaded on demand
-  const [categories, setCategories] = useState<CategoryOption[]>([]);
-  const [suppliers, setSuppliers] = useState<SupplierOption[]>([]);
+  const [categories, setCategories] = useState<Option<number>[]>([]);
+  const [suppliers, setSuppliers] = useState<Option<number>[]>([]);
 
   // products are loaded on demand
   const [productsResult, setProductsResult] =

@@ -3,8 +3,8 @@ import {
   GetSuppliersRequest,
   GetSuppliersResponse,
   Supplier,
-  SupplierOption,
 } from "@/types/supplier";
+import { Option } from "@/types/option";
 import { BaseApi } from "@/api/BaseApi";
 export class SupplierApi extends BaseApi {
   getSuppliers(filters: GetSuppliersRequest): Promise<GetSuppliersResponse> {
@@ -51,7 +51,7 @@ export class SupplierApi extends BaseApi {
     });
   }
 
-  getSupplierOptions(): Promise<SupplierOption[]> {
-    return this.fetchRequest<SupplierOption[]>("/api/suppliers/options");
+  getSupplierOptions(): Promise<Option<number>[]> {
+    return this.fetchRequest<Option<number>[]>("/suppliers/options");
   }
 }

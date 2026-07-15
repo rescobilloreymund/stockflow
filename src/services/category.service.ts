@@ -1,13 +1,13 @@
 import { Prisma } from "@/generated/prisma/client";
 import { prisma } from "@/lib/prisma";
 import {
-  CategoryOption,
   CreateCategoryRequest,
   GetCategoriesRequest,
   GetCategoriesResponse,
   UpdateCategoryRequest,
 } from "@/types/category";
 import { toCategories } from "@/utils/mappers/categories/category.mapper";
+import { Option } from "@/types/option";
 
 export class CategoryService {
   async getCategories(
@@ -79,17 +79,17 @@ export class CategoryService {
     });
   }
 
-  async getCategoryOptions(): Promise<CategoryOption[]> {
-    const categories = await prisma.category.findMany({
-      select: {
-        id: true,
-        name: true,
-      },
-      orderBy: {
-        name: "asc",
-      },
-    });
+  // async getCategoryOptions(): Promise<Option<number>[]> {
+  //   const categories = await prisma.category.findMany({
+  //     select: {
+  //       id: true,
+  //       name: true,
+  //     },
+  //     orderBy: {
+  //       name: "asc",
+  //     },
+  //   });
 
-    return categories;
-  }
+  //   return categories;
+  // }
 }

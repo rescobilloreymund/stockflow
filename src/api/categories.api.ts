@@ -1,11 +1,11 @@
 import {
   Category,
-  CategoryOption,
   CreateCategoryRequest,
   GetCategoriesRequest,
   GetCategoriesResponse,
   UpdateCategoryRequest,
 } from "@/types/category";
+import { Option } from "@/types/option";
 import { BaseApi } from "@/api/BaseApi";
 export class CategoryApi extends BaseApi {
   getCategories(filters: GetCategoriesRequest): Promise<GetCategoriesResponse> {
@@ -22,12 +22,12 @@ export class CategoryApi extends BaseApi {
     const query = params.toString();
 
     return this.fetchRequest<GetCategoriesResponse>(
-      `/api/categories${query ? `?${query}` : ""}`,
+      `/categories${query ? `?${query}` : ""}`,
     );
   }
 
   createCategory(data: CreateCategoryRequest): Promise<Category> {
-    return this.fetchRequest<Category>("/api/categories", {
+    return this.fetchRequest<Category>("/categories", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export class CategoryApi extends BaseApi {
   }
 
   updateCategory(id: number, data: UpdateCategoryRequest): Promise<Category> {
-    return this.fetchRequest<Category>(`/api/categories/${id}`, {
+    return this.fetchRequest<Category>(`/categories/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -47,12 +47,12 @@ export class CategoryApi extends BaseApi {
   }
 
   deleteCategory(id: number): Promise<void> {
-    return this.fetchRequest<void>(`/api/categories/${id}`, {
+    return this.fetchRequest<void>(`/categories/${id}`, {
       method: "DELETE",
     });
   }
 
-  getCategoryOptions(): Promise<CategoryOption[]> {
-    return this.fetchRequest<CategoryOption[]>("/api/categories/options");
+  getCategoryOptions(): Promise<Option<number>[]> {
+    return this.fetchRequest<Option<number>[]>("/categories/options");
   }
 }

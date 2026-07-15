@@ -37,12 +37,12 @@ export class ProductApi extends BaseApi {
     const query = params.toString();
 
     return this.fetchRequest<GetProductsResponse>(
-      `/api/products${query ? `?${query}` : ""}`,
+      `/products${query ? `?${query}` : ""}`,
     );
   }
 
   createProduct(data: CreateProductRequest): Promise<Product> {
-    return this.fetchRequest<Product>("/api/products", {
+    return this.fetchRequest<Product>("/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export class ProductApi extends BaseApi {
   }
 
   updateProduct(id: number, data: UpdateProductRequest): Promise<Product> {
-    return this.fetchRequest<Product>(`/api/products/${id}`, {
+    return this.fetchRequest<Product>(`/products/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -62,7 +62,7 @@ export class ProductApi extends BaseApi {
   }
 
   deleteProduct(id: number): Promise<void> {
-    return this.fetchRequest<void>(`/api/products/${id}`, {
+    return this.fetchRequest<void>(`/products/${id}`, {
       method: "DELETE",
     });
   }

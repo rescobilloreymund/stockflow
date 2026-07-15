@@ -9,18 +9,17 @@ import {
 } from "../ui/Select";
 import { useProductForm } from "@/hooks/useProductForm";
 import { Product } from "@/types/product";
-import { CategoryOption } from "@/types/category";
-import { SupplierOption } from "@/types/supplier";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Controller } from "react-hook-form";
 import { ProductFormData } from "@/schemas/product.schema";
+import { Option } from "@/types/option";
 
 interface ProductFormProps {
   defaultValues?: ProductFormData;
   onSubmit: (data: ProductFormData) => void;
   editingProduct: Product | null;
-  categories: CategoryOption[];
-  suppliers: SupplierOption[];
+  categories: Option<number>[];
+  suppliers: Option<number>[];
 }
 
 export default function ProductForm({
@@ -129,10 +128,10 @@ export default function ProductForm({
                 <SelectContent>
                   {categories.map((category) => (
                     <SelectItem
-                      value={category.id.toString()}
-                      key={category.id}
+                      value={category.value.toString()}
+                      key={category.value}
                     >
-                      {category.name}
+                      {category.label}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -160,10 +159,10 @@ export default function ProductForm({
                 <SelectContent>
                   {suppliers.map((supplier) => (
                     <SelectItem
-                      value={supplier.id.toString()}
-                      key={supplier.id}
+                      value={supplier.value.toString()}
+                      key={supplier.value}
                     >
-                      {supplier.name}
+                      {supplier.label}
                     </SelectItem>
                   ))}
                 </SelectContent>

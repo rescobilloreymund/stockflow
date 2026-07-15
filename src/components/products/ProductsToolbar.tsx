@@ -1,5 +1,3 @@
-import { CategoryOption } from "@/types/category";
-import { Input } from "../ui/Input";
 import {
   Select,
   SelectContent,
@@ -11,6 +9,7 @@ import { ProductStatusFilter } from "@/types/product";
 import { ProductStatuses } from "@/constants/products";
 import { formatProductStatus } from "@/utils/formatters/product.formatter";
 import SearchInput from "../shared/SearchInput";
+import { Option } from "@/types/option";
 interface ProductsToolbarProps {
   search: string;
   onSearchChange: (value: string) => void;
@@ -18,7 +17,7 @@ interface ProductsToolbarProps {
   selectedCategory: number;
   onCategoryChange: (value: number) => void;
 
-  categories: CategoryOption[];
+  categories: Option<number>[];
 
   status: ProductStatusFilter;
   onStatusChange: (value: ProductStatusFilter) => void;
@@ -51,8 +50,11 @@ export default function ProductsToolbar({
           <SelectContent>
             <SelectItem value="0">All Categories</SelectItem>
             {categories.map((category) => (
-              <SelectItem value={category.id.toString()} key={category.id}>
-                {category.name}
+              <SelectItem
+                value={category.value.toString()}
+                key={category.value}
+              >
+                {category.label}
               </SelectItem>
             ))}
           </SelectContent>

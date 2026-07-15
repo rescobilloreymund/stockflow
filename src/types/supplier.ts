@@ -53,8 +53,3 @@ export interface UpdateSupplierRequest {
   email?: string;
   phone: string;
 }
-
-export interface SupplierOption {
-  id: number;
-  name: string;
-}
