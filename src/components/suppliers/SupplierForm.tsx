@@ -2,7 +2,7 @@ import { Input } from "../ui/Input";
 import { Button } from "../ui/Button";
 
 import { useSupplierForm } from "@/hooks/useSupplierForm";
-import { Supplier, CreateSupplierRequest } from "@/types/supplier";
+import { Supplier } from "@/types/supplier";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Separator } from "../ui/separator";
 import { Textarea } from "../ui/textarea";

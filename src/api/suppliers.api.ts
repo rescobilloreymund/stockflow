@@ -21,12 +21,12 @@ export class SupplierApi extends BaseApi {
     const query = params.toString();
 
     return this.fetchRequest<GetSuppliersResponse>(
-      `/api/suppliers${query ? `?${query}` : ""}`,
+      `/suppliers${query ? `?${query}` : ""}`,
     );
   }
 
   createSupplier(data: CreateSupplierRequest): Promise<Supplier> {
-    return this.fetchRequest<Supplier>("/api/suppliers", {
+    return this.fetchRequest<Supplier>("/suppliers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +36,7 @@ export class SupplierApi extends BaseApi {
   }
 
   updateSupplier(id: number, data: CreateSupplierRequest): Promise<Supplier> {
-    return this.fetchRequest<Supplier>(`/api/suppliers/${id}`, {
+    return this.fetchRequest<Supplier>(`/suppliers/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export class SupplierApi extends BaseApi {
   }
 
   deleteSupplier(id: number): Promise<void> {
-    return this.fetchRequest<void>(`/api/suppliers/${id}`, {
+    return this.fetchRequest<void>(`/suppliers/${id}`, {
       method: "DELETE",
     });
   }
