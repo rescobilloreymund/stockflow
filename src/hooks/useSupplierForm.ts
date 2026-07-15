@@ -1,4 +1,4 @@
-import { CreateSupplierRequest, Supplier } from "@/types/supplier";
+import { Supplier } from "@/types/supplier";
 import { useEffect } from "react";
 import { supplierToFormData } from "@/utils/mappers/suppliers/supplier-form.mapper";
 import { useForm } from "react-hook-form";

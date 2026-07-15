@@ -4,8 +4,6 @@ import { CategoryApi } from "@/api/categories.api";
 
 import {
   Category,
-  CreateCategoryRequest,
-  UpdateCategoryRequest,
   GetCategoriesRequest,
   GetCategoriesResponse,
   CategorySortField,
