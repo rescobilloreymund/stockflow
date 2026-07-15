@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ProductStatus } from "@/generated/prisma/enums";
+import { PRODUCT_STATUSES } from "@/types/product";
 
 export const createProductSchema = z.object({
   name: z.string().trim().min(1, "Product name is required."),
@@ -8,7 +8,7 @@ export const createProductSchema = z.object({
   supplierId: z.number().positive("Please select a supplier."),
   cost: z.number().nonnegative("Please enter a valid cost."),
   price: z.number().nonnegative("Please enter a valid price."),
-  status: z.enum(ProductStatus),
+  status: z.enum(PRODUCT_STATUSES),
 });
 
 export type ProductFormData = z.infer<typeof createProductSchema>;

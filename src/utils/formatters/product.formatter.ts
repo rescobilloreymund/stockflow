@@ -1,4 +1,4 @@
-import { ProductStatus } from "@/generated/prisma/enums";
+import { ProductStatus } from "@/types/product";
 
 export const PRODUCT_STATUS_LABELS: Record<ProductStatus, string> = {
   ACTIVE: "Active",

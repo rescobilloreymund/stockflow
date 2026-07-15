@@ -1,7 +1,9 @@
 import { Category } from "./category";
 import { Supplier } from "./supplier";
 import { PageSize, PaginationMeta, SortDirection } from "./common";
-export type ProductStatus = "ACTIVE" | "INACTIVE" | "DISCONTINUED";
+
+export const PRODUCT_STATUSES = ["ACTIVE", "INACTIVE", "DISCONTINUED"] as const;
+export type ProductStatus = (typeof PRODUCT_STATUSES)[number];
 export type ProductStatusFilter = ProductStatus | "all";
 export interface Product {
   id: number;
